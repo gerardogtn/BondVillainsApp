@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Get ahold of some villains, for the table
     // This is an array of Villain instances
     let allVillains = Villain.allVillains
+    let VILLAIN_CELL_IDENTIFIER = "VillainCell"
 
     // MARK: Table View Data Source
 
@@ -21,14 +22,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("VillainCell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(VILLAIN_CELL_IDENTIFIER)! as UITableViewCell
         let villain = self.allVillains[indexPath.row]
 
-        // Set the name and image
         cell.textLabel?.text = villain.name
         cell.imageView?.image = UIImage(named: villain.imageName)
 
-        // If the cell has a detail label, we will put the evil scheme in.
         if let detailTextLabel = cell.detailTextLabel {
             detailTextLabel.text = "Scheme: \(villain.evilScheme)"
         }
